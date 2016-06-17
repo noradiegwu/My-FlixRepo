@@ -2,9 +2,12 @@ package com.example.noradiegwu.flixster;
 
 //import android.graphics.Movie;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -37,6 +40,29 @@ public class MoviesActivity extends AppCompatActivity {
             lvMovies.setAdapter(adapter);
         }
 
+        lvMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // get movie at this position
+                Movie moviePos = movies.get(position);
+                // Make an Intent
+                    // An Intent basically begins a request to another activity from this one
+                Intent iDetails = new Intent(MoviesActivity.this, MovieDetailsActivity.class);
+                // in the intent, put these "extras" into a bundle for access from the second activity
+                iDetails.putExtra("title", moviePos.getTitle());
+                iDetails.putExtra("synopsis", moviePos.getOverview());
+                iDetails.putExtra("imagePortrait", moviePos.getPosterUrl());
+                iDetails.putExtra("imageLand", moviePos.getBackdropImg());
+                iDetails.putExtra("rating", moviePos.getRating());
+                iDetails.putExtra("release", moviePos.getRelease());
+                iDetails.putExtra("popularity", moviePos.getPopularity());
+                // brings up the activity
+                startActivity(iDetails);
+                //return true;
+            }
+
+        });
+
         String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -63,19 +89,6 @@ public class MoviesActivity extends AppCompatActivity {
             }
         });
 
-
-
-        // 2. Get the list view that we want to populate
-        //ListView lvMovies = (ListView)findViewById(R.id.lvMovies);
-
-        // 3. Create an array adapter
-        // takes the adapter and maps it to the view so that it shows up
-        //ArrayAdapter<Movie> adapter = new ArrayAdapter<Movie>(this, android.R.layout.simple_list_item_1, movies);
-        //MoviesAdapter adapter = new MoviesAdapter(this, movies);
-        // 4. Associate the adapter with the list view
-       // if(lvMovies != null) {
-         //   lvMovies.setAdapter(adapter);
-        //}
 
     }
 }

@@ -6,11 +6,40 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by noradiegwu on 6/15/16.
- */
+
 public class Movie {
+    public String posterUrl;
+    public String overview;
+    public int rating;
     public String title;
+    public String backdropImg;
+    public int popularity;
+    public String release;
+
+
+    public Movie(JSONObject jsonObject) throws JSONException {
+        this.posterUrl = jsonObject.getString("poster_path");
+        this.title = jsonObject.getString("original_title");
+        this.overview = jsonObject.getString("overview");
+        this.rating = jsonObject.getInt("vote_average");
+        this.backdropImg = jsonObject.getString("backdrop_path");
+        this.popularity = jsonObject.getInt("popularity");
+        this.release = jsonObject.getString("release_date");
+
+    }
+
+    public String getRelease() {
+        return release;
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public String getBackdropImg() {
+        return String.format("https://image.tmdb.org/t/p/w342%s", backdropImg);
+    }
+
 
     public int getRating() {
         return rating;
@@ -28,22 +57,8 @@ public class Movie {
         return title;
     }
 
-    public String posterUrl;
-    public String overview;
-    public int rating;
-
-
-    public Movie(JSONObject jsonObject) throws JSONException {
-        this.posterUrl = jsonObject.getString("poster_path");
-        this.title = jsonObject.getString("original_title");
-        this.overview = jsonObject.getString("overview");
-        this.rating = jsonObject.getInt("vote_average");
-
-    }
-
     public static ArrayList<Movie> fromJSONArray(JSONArray array) {
-        ArrayList<Movie> results = new ArrayList<>(); // what are we grabbing here?
-        // it is a list of JSONObjects, but what exactly are they?
+        ArrayList<Movie> results = new ArrayList<>();
 
         for(int i = 0; i < array.length(); i++) {
             try {
@@ -55,7 +70,4 @@ public class Movie {
         return results;
     }
 
-   /* public String toString() {
-        return title + " - " + rating;
-    }*/
 }
