@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
 
     <ImageView
@@ -16,8 +15,11 @@
         android:layout_alignParentStart="true" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivPoster"
+        android:layout_toRightOf="@+id/ivPoster"
+        android:layout_toEndOf="@+id/ivPoster">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,24 +27,19 @@
             android:text="Large Text"
             android:textSize="26sp"
             android:padding="10dp"
-            android:id="@+id/tvTitle"
-            android:layout_alignTop="@+id/ivPoster"
-            android:layout_toRightOf="@+id/ivPoster"
-            android:layout_toEndOf="@+id/ivPoster"
-            tools:ignore="NotSibling" />
+            android:id="@+id/tvTitle" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="New Text"
                 android:id="@+id/tvOverview"
-                android:layout_below="@+id/tvTitle"
-                android:layout_toRightOf="@+id/ivPoster"
-                android:layout_toEndOf="@+id/ivPoster"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
-                tools:ignore="NotSibling" />
+                android:layout_below="@+id/tvTitle"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
 
     </RelativeLayout>

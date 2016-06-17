@@ -5,7 +5,6 @@ package com.example.noradiegwu.flixster;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -46,9 +45,8 @@ public class MoviesActivity extends AppCompatActivity {
                 // get movie at this position
                 Movie moviePos = movies.get(position);
                 // Make an Intent
-                    // An Intent basically begins a request to another activity from this one
                 Intent iDetails = new Intent(MoviesActivity.this, MovieDetailsActivity.class);
-                // in the intent, put these "extras" into a bundle for access from the second activity
+                // bundle "extras" for delivery to second activity
                 iDetails.putExtra("title", moviePos.getTitle());
                 iDetails.putExtra("synopsis", moviePos.getOverview());
                 iDetails.putExtra("imagePortrait", moviePos.getPosterUrl());
@@ -56,9 +54,8 @@ public class MoviesActivity extends AppCompatActivity {
                 iDetails.putExtra("rating", moviePos.getRating());
                 iDetails.putExtra("release", moviePos.getRelease());
                 iDetails.putExtra("popularity", moviePos.getPopularity());
-                // brings up the activity
+                // bring up the activity
                 startActivity(iDetails);
-                //return true;
             }
 
         });
@@ -77,7 +74,6 @@ public class MoviesActivity extends AppCompatActivity {
                     movieJsonResults = response.getJSONArray("results");
                     movies.addAll(Movie.fromJSONArray(movieJsonResults));
                     adapter.notifyDataSetChanged();
-                    Log.d("moviesJSON", movieJsonResults.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
