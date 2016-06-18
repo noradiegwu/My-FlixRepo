@@ -15,7 +15,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 * [x] For each movie displayed, user can see the following details:
-  * [ ] Title, Poster Image, Overview (Portrait mode) - Used Backdrop for both simpler viewing
+  * [ ] Title, Poster Image, Overview (Portrait mode) - Used Backdrop for both for simpler viewing
   * [x] Title, Backdrop Image, Overview (Landscape mode)
 * [x] Layout is optimized with the [ViewHolder](http://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView#improving-performance-with-the-viewholder-pattern) pattern.
 * [x] Display a nice default [placeholder graphic](http://guides.codepath.com/android/Displaying-Images-with-the-Picasso-Library#configuring-picasso) for each image during loading.
