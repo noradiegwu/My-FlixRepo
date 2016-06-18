@@ -18,22 +18,27 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class MoviesActivity extends AppCompatActivity {
 
     ArrayList<Movie> movies;
     MoviesAdapter adapter;
-    ListView lvMovies;
+    //ListView lvMovies;
+    @BindView(R.id.lvMovies) ListView lvMovies;
+
+    //@BindView(R.id.title) TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
+        ButterKnife.bind(this);
 
         movies = new ArrayList<Movie>();
         adapter = new MoviesAdapter(this, movies);
-        lvMovies = (ListView)findViewById(R.id.lvMovies);
 
         if(lvMovies != null) {
             lvMovies.setAdapter(adapter);

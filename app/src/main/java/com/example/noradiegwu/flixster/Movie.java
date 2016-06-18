@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Movie {
     public String posterUrl;
     public String overview;
-    public int rating;
+    public float rating;
     public String title;
     public String backdropImg;
     public int popularity;
@@ -41,7 +41,7 @@ public class Movie {
     }
 
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 

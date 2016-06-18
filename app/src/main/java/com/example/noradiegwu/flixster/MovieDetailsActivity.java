@@ -8,12 +8,22 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 public class MovieDetailsActivity extends AppCompatActivity {
+
+    @BindView(R.id.tvOverview) TextView tvOverview;
+    @BindView(R.id.tvTitle) TextView tvTitle;
+    @BindView(R.id.tvReleaseDate) TextView tvReleaseDate;
+    @BindView(R.id.rbRating) RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+        ButterKnife.bind(this);
         // back/up arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -21,26 +31,22 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         // grab the title from the "extra" bundle (from main activity) and set the text in new activity
         String title = getIntent().getStringExtra("title");
-        TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvTitle.setText(title);
 
         // synopsis
         String synopsis = getIntent().getStringExtra("synopsis");
-        TextView tvOverview = (TextView) findViewById(R.id.tvOverview);
         tvOverview.setText(synopsis);
 
         // release date
         String release = getIntent().getStringExtra("release");
-        TextView tvReleaseDate = (TextView) findViewById(R.id.tvReleaseDate);
         tvReleaseDate.setText("Release Date: " + release);
 
         // image
         String backdrop = getIntent().getStringExtra("imageLand");
-        Picasso.with(this).load(backdrop).placeholder(R.drawable.stock_photo_land).into((ImageView)findViewById(R.id.ivPoster));
+        Picasso.with(this).load(backdrop).transform(new RoundedCornersTransformation(10, 10)).transform(new RoundedCornersTransformation(10, 10)).placeholder(R.drawable.stock_photo_land).into((ImageView)findViewById(R.id.ivPoster));
 
         // rating
-        int rating = getIntent().getIntExtra("rating", 0);
-        RatingBar ratingBar = (RatingBar)findViewById(R.id.rbRating);
+        float rating = ((float) getIntent().getFloatExtra("rating", (float) 0));
         ratingBar.setRating(rating/2);
         ratingBar.setFocusable(false);
     }

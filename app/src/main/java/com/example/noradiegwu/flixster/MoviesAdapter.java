@@ -13,6 +13,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 //import android.graphics.Movie;
 
 public class MoviesAdapter extends ArrayAdapter<Movie> {
@@ -63,12 +65,12 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
         // if portrait, use poster
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             //Picasso.with(getContext()).load(movie.getPosterUrl()).into(viewHolder.ivPoster);
-            Picasso.with(getContext()).load(movie.getPosterUrl()).placeholder(R.drawable.stock_photo_portrait).into(viewHolder.ivPoster);
+            Picasso.with(getContext()).load(movie.getPosterUrl()).transform(new RoundedCornersTransformation(10, 10)).placeholder(R.drawable.stock_photo_portrait).into(viewHolder.ivPoster);
 
             // else if landscape, use backdrop
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             //Picasso.with(getContext()).load(movie.getBackdropImg()).into(viewHolder.ivPoster);        // Return the completed view to render on screen
-            Picasso.with(getContext()).load(movie.getBackdropImg()).placeholder(R.drawable.stock_photo_land).into(viewHolder.ivPoster);        // Return the completed view to render on screen
+            Picasso.with(getContext()).load(movie.getBackdropImg()).transform(new RoundedCornersTransformation(10, 10)).placeholder(R.drawable.stock_photo_land).into(viewHolder.ivPoster);        // Return the completed view to render on screen
 
         }
 
