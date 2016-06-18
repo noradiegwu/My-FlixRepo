@@ -28,8 +28,8 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 * [x] List anything else that you can get done to improve the app functionality!
-  [x] Splash Page on start up
-  [x] Scroll views for long bits of text (overviews)
+* [x] Splash Page on start up
+* [x] Scroll views for long bits of text (overviews)
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
